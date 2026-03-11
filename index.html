@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dsync — Video Review Collaboration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-logo">◼</span>
+          <div>
+            <h1>Dsync</h1>
+            <p>Video review studio</p>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-item active" data-view="dashboard">Dashboard</button>
+          <button class="nav-item" data-view="library">Video Library</button>
+          <button class="nav-item" data-view="review">Review Space</button>
+          <button class="nav-item" data-view="sharing">Share Links</button>
+        </nav>
+
+        <section class="auth-card" id="authCard">
+          <h2>Google Authentication</h2>
+          <p>Sign in with your Google account to access your workspace and Drive storage.</p>
+          <button id="googleSignInBtn" class="primary-btn">Sign in with Google</button>
+          <div id="userProfile" class="hidden"></div>
+        </section>
+
+        <section class="drive-card" id="driveCard">
+          <h2>Google Drive Integration</h2>
+          <p>Connect your Google Drive to store original video uploads.</p>
+          <button id="connectDriveBtn" class="secondary-btn">Connect Google Drive</button>
+          <p id="driveStatus" class="status-text">Drive not connected</p>
+        </section>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <h2>Professional review workflow for creators</h2>
+            <p>Upload videos, gather timestamped feedback, and track review progress in one place.</p>
+          </div>
+          <div class="topbar-stats" id="topbarStats"></div>
+        </header>
+
+        <section class="panel upload-panel">
+          <div>
+            <h3>Video Upload & Management</h3>
+            <p>Upload files or add a direct URL to begin review.</p>
+          </div>
+          <form id="uploadForm" class="upload-form">
+            <input id="videoTitle" type="text" placeholder="Video title" required />
+            <input id="videoFile" type="file" accept="video/*" />
+            <input id="videoUrl" type="url" placeholder="or paste a video URL" />
+            <button type="submit" class="primary-btn">Upload Video</button>
+          </form>
+        </section>
+
+        <section class="layout-grid">
+          <article class="panel player-panel">
+            <div class="panel-header">
+              <h3>Interactive Video Player</h3>
+              <span id="activeVideoBadge" class="badge">No video selected</span>
+            </div>
+            <div class="video-stage">
+              <video id="reviewVideo" controls></video>
+              <div id="timelineMarkers" class="timeline-markers"></div>
+            </div>
+            <div class="comment-form">
+              <input id="guestName" type="text" placeholder="Guest name" />
+              <input id="guestEmail" type="email" placeholder="Guest email" />
+              <textarea id="commentText" placeholder="Leave timestamp feedback..."></textarea>
+              <button id="addCommentBtn" class="primary-btn">Add Timestamp Comment</button>
+            </div>
+          </article>
+
+          <article class="panel sidebar-panel">
+            <div class="panel-header">
+              <h3>Dashboard Module</h3>
+              <span class="badge" id="progressBadge">0% reviewed</span>
+            </div>
+            <ul id="videoList" class="video-list"></ul>
+            <h4>Comments</h4>
+            <ul id="commentList" class="comment-list"></ul>
+          </article>
+        </section>
+
+        <section class="panel share-panel">
+          <div class="panel-header">
+            <h3>Shareable Link Module</h3>
+            <button id="copyLinkBtn" class="secondary-btn">Copy review link</button>
+          </div>
+          <input id="shareLink" type="text" readonly placeholder="Generate a secure link by selecting a video" />
+          <p class="small-text">Anyone with this link can review and leave guest comments with name + email.</p>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
